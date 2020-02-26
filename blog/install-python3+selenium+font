@@ -1,0 +1,6 @@
+#
+# 在linux环境下安装python3, selenium, windows fonts
+#
+
+1. docker容器可以run python3, 但selenium不支持ppc64le
+docker
