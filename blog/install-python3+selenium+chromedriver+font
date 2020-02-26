@@ -1,0 +1,59 @@
+#
+# 在linux环境下安装python3, selenium, chromedriver, windows fonts
+#
+
+----- Python3 -----
+1. docker容器可以run python3, 但selenium不支持ppc64le
+~: docker pull python
+
+2. ubuntu安装python3
+# check os info
+~: uname -a
+Linux fw_build 4.15.0-55-generic #60-Ubuntu SMP Tue Jul 2 18:22:20 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+# prerequisite
+~: sudo apt-get install build-essential checkinstall
+~: sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev \
+    libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
+# DO NOT delete python2
+~: python --version (or python -V)
+Python 2.7.17
+~: python3 --version (or python3 -V)
+Python 3.6.9
+
+
+----- Selenium -----
+3. install pip3
+~: sudo apt-get update && apt-get upgrade
+~: sudo apt-get install python3-pip
+~: pip3 --version
+pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
+
+4. install selenium
+~: pip3 install selenium
+Collecting selenium
+  Using cached https://files.pythonhosted.org/packages/80/d6/4294f0b4bce4de0abf13e17190289f9d0613b0a44e5dd6a7f5ca98459853/selenium-3.141.0-py2.py3-none-any.whl
+Collecting urllib3 (from selenium)
+  Using cached https://files.pythonhosted.org/packages/e8/74/6e4f91745020f967d09332bb2b8b9b10090957334692eb88ea4afe91b77f/urllib3-1.25.8-py2.py3-none-any.whl
+Installing collected packages: urllib3, selenium
+Successfully installed selenium-3.141.0 urllib3-1.25.8
+
+
+----- ChromeDriver -----
+
+
+----- Windows Fonts -----
+5. chrome中文显示方框，需要在系统上安装中文字体
+~: cd /usr/share/fonts/truetype/
+~: sudo mkdir windows-fonts
+# copy from windows C:\Windows\Fonts to linux /usr/share/fonts/truetype/windows-fonts
+
+6. 建立字体缓存
+~: sudo apt-get install ttf-mscorefonts-installer
+~: sudo apt-get install fontconfig
+
+~: sudo mkfontscale
+~: sudo mkfontdir
+~: sudo fc-cache -fv
+
